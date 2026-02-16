@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Avenue Saint Charles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --deep-purple: #4A148C;
+            --mardi-gras-green: #00843D;
+            --mardi-gras-gold: #FFD700;
+            --mardi-gras-purple: #7B2D8E;
+            --dark-bg: #1a0f2e;
+            --cream: #FFF8E7;
+            --burnt-orange: #CC5500;
+            --text-light: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text-light);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(212, 175, 55, 0.02) 10px,
+                    rgba(212, 175, 55, 0.02) 20px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 15, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--mardi-gras-purple), var(--mardi-gras-gold), var(--mardi-gras-green));
+            transition: width 0.4s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold), var(--mardi-gras-gold), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mardi-gras-purple), var(--mardi-gras-gold), var(--mardi-gras-green));
+            margin: 1.5rem auto;
+        }
+
+        .fleur {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .menu-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--cream);
+        }
+
+        .menu-image-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: rgba(212, 175, 55, 0.1);
+            border: 3px solid var(--gold);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .menu-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--cream);
+            font-size: 1.1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 3/2;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 3px solid var(--gold);
+            background: var(--dark-bg);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(123, 45, 142, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        h2 {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: center;
+            margin: 4rem 0 2rem;
+            letter-spacing: 3px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 3px solid var(--gold);
+            font-family: 'Oswald', Arial, sans-serif;
+            letter-spacing: 2px;
+            color: var(--cream);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .menu-image-container {
+                padding: 1rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="https://www.instagram.com/avenuesaintcharles/" target="_blank">Instagram</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Our Menu</h1>
+        <div class="fleur">⚜</div>
+        
+        <div class="menu-intro">
+            <p>Authentic Louisiana flavors crafted with ingredients sourced directly from the Big Easy. From po-boys to crawfish tails, we bring the taste of New Orleans to Oregon.</p>
+        </div>
+
+        <div class="menu-image-container">
+            <img src="menu-image.jpg" 
+                 alt="Avenue Saint Charles Menu"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; text-align:center; padding:3rem; color:var(--cream);">
+                <p style="font-size:1.5rem; margin-bottom:1rem;">📋 Our Menu</p>
+                <p>Visit us at BG Food Cartel to see our full menu featuring:</p>
+                <ul style="list-style:none; padding:0; margin:2rem 0; font-size:1.2rem; line-height:2;">
+                    <li>🥖 Authentic Po-Boys</li>
+                    <li>🦞 Crawfish Dishes</li>
+                    <li>🍚 Red Beans & Rice</li>
+                    <li>🌶️ Cajun & Creole Classics</li>
+                    <li>🎭 Traditional NOLA Favorites</li>
+                </ul>
+            </div>
+            <p class="menu-note">All dishes made with authentic Louisiana ingredients and time-honored recipes</p>
+        </div>
+
+        <h2>Featured Dishes Gallery</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://www.avenuesaintcharles.com/wp-content/uploads/2023/11/DSC_0642-1024x685.jpg" 
+                     alt="Delicious New Orleans cuisine"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%234A148C\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\'%3ENOLA Cuisine%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.avenuesaintcharles.com/wp-content/uploads/2023/11/DSC_0488-1024x685.jpg" 
+                     alt="Authentic po-boys and sandwiches"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%234A148C\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\'%3EPo-Boys%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.avenuesaintcharles.com/wp-content/uploads/2023/11/DSC_0453-1024x685.jpg" 
+                     alt="Cajun and Creole specialties"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%234A148C\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\'%3ECajun Classics%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.avenuesaintcharles.com/wp-content/uploads/2023/11/DSC_0328-1024x685.jpg" 
+                     alt="Louisiana-style favorites"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%234A148C\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\'%3ECreole Favorites%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.avenuesaintcharles.com/wp-content/uploads/2023/11/DSC_0282-1024x685.jpg" 
+                     alt="Soul food from the bayou"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%234A148C\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\'%3ESoul Food%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.avenuesaintcharles.com/wp-content/uploads/2023/11/DSC_0241-1024x685.jpg" 
+                     alt="Traditional Louisiana cooking"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%234A148C\' width=\'400\' height=\'300\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'24\' fill=\'%23D4AF37\'%3EBayou Delights%3C/text%3E%3C/svg%3E';">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Avenue Saint Charles</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Bringing New Orleans to Oregon ⚜</p>
+    </footer>
+</body>
+</html>

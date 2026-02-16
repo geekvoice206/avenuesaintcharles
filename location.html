@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location - Avenue Saint Charles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --deep-purple: #4A148C;
+            --mardi-gras-green: #00843D;
+            --mardi-gras-gold: #FFD700;
+            --mardi-gras-purple: #7B2D8E;
+            --dark-bg: #1a0f2e;
+            --cream: #FFF8E7;
+            --burnt-orange: #CC5500;
+            --text-light: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text-light);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(212, 175, 55, 0.02) 10px,
+                    rgba(212, 175, 55, 0.02) 20px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 15, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--mardi-gras-purple), var(--mardi-gras-gold), var(--mardi-gras-green));
+            transition: width 0.4s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold), var(--mardi-gras-gold), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mardi-gras-purple), var(--mardi-gras-gold), var(--mardi-gras-green));
+            margin: 1.5rem auto;
+        }
+
+        .fleur {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .location-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--cream);
+        }
+
+        .location-details {
+            background: linear-gradient(135deg, rgba(123, 45, 142, 0.1), rgba(212, 175, 55, 0.1));
+            border: 3px solid var(--gold);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .location-details h2 {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+        }
+
+        .address {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+        }
+
+        .address strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .cartel-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--gold);
+        }
+
+        .cartel-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .cartel-info a {
+            color: var(--mardi-gras-gold);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid var(--mardi-gras-gold);
+            transition: all 0.3s ease;
+        }
+
+        .cartel-info a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .directions-note {
+            background: rgba(0, 132, 61, 0.1);
+            border-left: 4px solid var(--mardi-gras-green);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-style: italic;
+            color: var(--cream);
+        }
+
+        .map-container {
+            margin: 3rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            display: block;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, var(--mardi-gras-purple), var(--deep-purple));
+            color: white;
+            text-decoration: none;
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            border: 2px solid var(--gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(135deg, var(--burnt-orange), var(--mardi-gras-gold));
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 3px solid var(--gold);
+            font-family: 'Oswald', Arial, sans-serif;
+            letter-spacing: 2px;
+            color: var(--cream);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .location-details {
+                padding: 2rem 1.5rem;
+            }
+
+            .map-container iframe {
+                height: 350px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="https://www.instagram.com/avenuesaintcharles/" target="_blank">Instagram</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Find Us</h1>
+        <div class="fleur">⚜</div>
+        
+        <div class="location-intro">
+            <p>Come visit us at BG Food Cartel in downtown Beaverton! We're tucked in the corner, but head straight ahead from either entrance and you should run into us. We hope to see y'all soon!</p>
+        </div>
+
+        <div class="location-details">
+            <h2>Avenue Saint Charles</h2>
+            <div class="address">
+                <strong>📍 Located at BG Food Cartel</strong>
+                4250 SW Rose Biggi Avenue<br>
+                Beaverton, Oregon 97005
+            </div>
+
+            <div class="directions-note">
+                <strong>🎯 Finding Us:</strong> We're tucked in the corner of the food cart pod. Head straight ahead from either entrance and you'll find us serving up authentic NOLA cuisine!
+            </div>
+
+            <div class="cartel-info">
+                <p>We're part of the <a href="https://bgfoodcartel.com" target="_blank">BG Food Cartel</a>, Beaverton's premier food cart pod featuring over 30 diverse food vendors, a speakeasy-style bar, and plenty of outdoor seating.</p>
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-light);">Located in the heart of the Creekside District, directly across from Beaverton City Hall.</p>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.8773583662316!2d-122.80524708443552!3d45.48847597910135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950db8b2c3e4e1%3A0x7c8e5f9e0e8e5f9e!2sBG&#39;s%20Food%20Cartel!5e0!3m2!1sen!2sus!4v1645000000000!5m2!1sen!2sus" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Map to Avenue Saint Charles at BG Food Cartel">
+            </iframe>
+        </div>
+
+        <div class="action-buttons">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=BG+Food+Cartel,+4250+SW+Rose+Biggi+Ave,+Beaverton,+OR+97005" 
+               target="_blank" 
+               class="btn">
+                <span>🗺️</span>
+                <span>Get Directions</span>
+            </a>
+            <a href="https://www.yelp.com/biz/avenue-saint-charles-beaverton-3" 
+               target="_blank" 
+               class="btn secondary">
+                <span>⭐</span>
+                <span>View on Yelp</span>
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; padding: 2rem; background: rgba(212, 175, 55, 0.1); border-radius: 15px; border: 2px solid var(--gold);">
+            <h3 style="font-family: 'Oswald', Arial, sans-serif; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; letter-spacing: 2px;">Hours</h3>
+            <div style="font-size: 1.1rem; line-height: 2; color: var(--cream); margin-bottom: 2rem;">
+                <p><strong style="color: var(--gold);">Monday - Tuesday:</strong> Closed</p>
+                <p><strong style="color: var(--gold);">Wednesday - Thursday:</strong> 12:00 PM - 7:00 PM</p>
+                <p><strong style="color: var(--gold);">Friday - Saturday:</strong> 12:00 PM - 8:00 PM</p>
+                <p><strong style="color: var(--gold);">Sunday:</strong> 12:00 PM - 8:00 PM</p>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--gold);">
+                <h3 style="font-family: 'Oswald', Arial, sans-serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 1rem; letter-spacing: 2px;">Find Us Online</h3>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://www.yelp.com/biz/avenue-saint-charles-beaverton-3" 
+                       target="_blank"
+                       style="display: inline-block; padding: 0.8rem 1.5rem; background: rgba(255, 0, 0, 0.2); border: 2px solid #ff0000; border-radius: 8px; color: var(--gold); text-decoration: none; font-family: 'Oswald', Arial, sans-serif; font-size: 1.1rem; letter-spacing: 2px; transition: all 0.3s ease;">
+                        ⭐ Yelp Reviews
+                    </a>
+                    <a href="https://www.instagram.com/avenuesaintcharles/" 
+                       target="_blank"
+                       style="display: inline-block; padding: 0.8rem 1.5rem; background: rgba(123, 45, 142, 0.2); border: 2px solid var(--mardi-gras-purple); border-radius: 8px; color: var(--gold); text-decoration: none; font-family: 'Oswald', Arial, sans-serif; font-size: 1.1rem; letter-spacing: 2px; transition: all 0.3s ease;">
+                        📸 Instagram
+                    </a>
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.8; color: var(--cream);">
+                <strong style="color: var(--gold); display: block;">We look forward to serving you authentic Louisiana cuisine!</strong>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Avenue Saint Charles</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Bringing New Orleans to Oregon ⚜</p>
+    </footer>
+</body>
+</html>

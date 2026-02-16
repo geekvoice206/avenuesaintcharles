@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avenue Saint Charles - Authentic NOLA Cuisine in Beaverton</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --deep-purple: #4A148C;
+            --mardi-gras-green: #00843D;
+            --mardi-gras-gold: #FFD700;
+            --mardi-gras-purple: #7B2D8E;
+            --dark-bg: #1a0f2e;
+            --cream: #FFF8E7;
+            --burnt-orange: #CC5500;
+            --text-light: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text-light);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Decorative background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(212, 175, 55, 0.02) 10px,
+                    rgba(212, 175, 55, 0.02) 20px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 15, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--mardi-gras-purple), var(--mardi-gras-gold), var(--mardi-gras-green));
+            transition: width 0.4s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold), var(--mardi-gras-gold), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+            white-space: nowrap;
+        }
+
+        .tagline {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            letter-spacing: 3px;
+            color: var(--cream);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        /* Decorative fleur-de-lis */
+        .fleur {
+            font-size: 4rem;
+            color: var(--gold);
+            margin: 2rem 0;
+            animation: fadeInUp 1s ease-out 0.8s backwards, pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--gold);
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mardi-gras-purple), var(--mardi-gras-gold), var(--mardi-gras-green));
+            margin: 1rem auto;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(123, 45, 142, 0.1), rgba(0, 132, 61, 0.1));
+            border-radius: 20px;
+            margin: 4rem auto;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--cream);
+        }
+
+        .about-text h3 {
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .about-image:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(212, 175, 55, 0.4);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(123, 45, 142, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .about-image:hover::after {
+            opacity: 1;
+        }
+
+        /* Menu Section */
+        #menu {
+            text-align: center;
+        }
+
+        .menu-preview {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .menu-preview p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--cream);
+            margin-bottom: 2rem;
+        }
+
+        .menu-link {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .menu-link:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+            transform: translateX(5px);
+        }
+
+        /* Location Section */
+        #location {
+            background: linear-gradient(135deg, rgba(204, 85, 0, 0.1), rgba(212, 175, 55, 0.1));
+            border-radius: 20px;
+        }
+
+        .location-content {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--cream);
+            line-height: 2;
+        }
+
+        .location-content a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .location-content a:hover {
+            color: var(--mardi-gras-gold);
+            border-bottom-color: var(--mardi-gras-gold);
+        }
+
+        /* Instagram Link */
+        .social-link {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Oswald', Arial, sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--mardi-gras-purple);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(123, 45, 142, 0.2);
+        }
+
+        .social-link:hover {
+            background: var(--mardi-gras-purple);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(123, 45, 142, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 3px solid var(--gold);
+            font-family: 'Oswald', Arial, sans-serif;
+            letter-spacing: 1px;
+            color: var(--cream);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .menu-link, .social-link {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="https://www.instagram.com/avenuesaintcharles/" target="_blank">Instagram</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Avenue Saint Charles</h1>
+                <div class="tagline">WHO DAT!</div>
+                <div class="fleur">⚜</div>
+                <p>Authentic Creole & Cajun cuisine from the Big Easy, right here in Beaverton since 2019. Drawing from Arcadian roots and time-honored traditions, we bring the soul of New Orleans to Oregon.</p>
+            </div>
+        </section>
+
+        <section id="about" class="fade-in-section">
+            <h2>Our Story</h2>
+            <div class="about-content">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h3>From Louisiana to Oregon</h3>
+                        <p>Avenue Saint Charles has been bringing "who dat" to Beaverton since 2019. Drawing from Chef/Owner Tyler Auton's Arcadian (Cajun) roots and his extensive culinary training, Avenue Saint Charles serves the same authentic Creole and Cajun food one will find in the great city of New Orleans.</p>
+                        
+                        <p>From using ingredients such as dried red beans, po-boy bread, and crawfish tails sourced directly from Louisiana to employing time-honored techniques and recipes, we bring the flavor of the Big Easy to Oregon.</p>
+                        
+                        <p>We're located at the BG Food Cartel Pod in Beaverton, Oregon. We're tucked in the corner, but head straight ahead from either entrance and you should run into us. We hope to see y'all soon and Who Dat!</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://www.avenuesaintcharles.com/wp-content/uploads/2023/11/68254833_10101323097943243_5537691279661465600_n.jpg" 
+                             alt="Chef Tyler Auton at Avenue Saint Charles"
+                             onerror="this.style.display='none';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="fade-in-section">
+            <h2>Menu</h2>
+            <div class="menu-preview">
+                <p>Authentic Louisiana flavors crafted with ingredients sourced directly from the Big Easy. From po-boys to crawfish dishes, red beans & rice, and more!</p>
+                <a href="menu.html" class="menu-link">View Full Menu →</a>
+            </div>
+        </section>
+
+        <section id="location" class="fade-in-section">
+            <h2>Location</h2>
+            <div class="location-content">
+                <p>We are at the <a href="https://bgfoodcartel.com" target="_blank">BG Food Cartel</a><br>
+                in downtown Beaverton</p>
+                <p style="margin-top: 1rem; font-size: 1.1rem;">4250 SW Rose Biggi Ave, Beaverton, OR 97005</p>
+                <div style="margin-top: 2rem;">
+                    <a href="location.html" class="menu-link">Get Directions →</a>
+                </div>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://www.yelp.com/biz/avenue-saint-charles-beaverton-3" target="_blank" class="social-link">
+                        ⭐ Yelp
+                    </a>
+                    <a href="https://www.instagram.com/avenuesaintcharles/" target="_blank" class="social-link">
+                        📸 Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 Avenue Saint Charles</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Bringing New Orleans to Oregon ⚜</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
